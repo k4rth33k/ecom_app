@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BASE</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+	<style type="text/css">
+		.slider-ads{
+			/*background-color: lightblue;*/
+			height: 250px;
+			width: 100%;
+			background-image: url('https://rukminim1.flixcart.com/flap/844/140/image/f672f93cd9d66338.jpg?q=50');
+  			background-size: 100% 100%;
+		}
+		.img_self{
+			transform: scale(0.7);
+		}
+		.main_content{
+			margin-left: 15px;
+		}
+
+	</style>
+	<link rel="stylesheet" type="text/css" href="{% static 'attendance/materialize.css' %}">
+	<script type="text/javascript" src="{% static 'attendance/materialize.js' %}"></script>
+
+	<!-- Sweet Alert JS -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<!-- AJAX -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<!-- Slider -->
+	<!-- <script type="text/javascript" src = "slider/jquery.flexslider.js"></script>
+	<script type="text/javascript">
+		$(window).load(function() {
+		  $('.flexslider').flexslider({
+		    animation: "slide"
+		  });
+		});
+	</script> -->
+
+	<!-- Navbar -->
+	<nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo" style="margin-left: 8px">SHOPOHOLIC</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      	{% if uname %}
+      		<li style="margin-right: 5px">Hi, {{uname}}</li>
+      	{% endif %}
+        <li><a href="#">Register</a></li>
+        <li><a href="/shopoholic/login">Login</a></li>
+      </ul>
+    </div>
+   </nav>
+
+</head>
+<body>
+ {% block content %}
+ 	<div class="flexslider"><!-- 
+	  <ul class="slides">
+	    <li>
+	      <img src="https://i.imgur.com/LIn3A0e.png" />
+	    </li>
+	    <li>
+	      <img src="https://i.imgur.com/LIn3A0e.png" />
+	    </li>
+	    <li>
+	      <img src="https://i.imgur.com/LIn3A0e.png" />
+	    </li>
+	    <li>
+	      <img src="https://i.imgur.com/LIn3A0e.png" />
+	    </li>
+	  </ul>
+	</div> -->
+	<div class = "slider-ads">
+	</div>
+	<div class = "main_content">
+	{% for product in products %}
+		<div class="row">
+			<div class="card" style="width:400px">
+		  <img class="card-img-top" src="http://www.payless.com/dw/image/v2/AAPR_PRD/on/demandware.static/-/Sites-payless-catalog/default/dw63587846/images/hi-res/169316_6_1400x1400.jpg?sw=556" alt="Card image">
+			  <div class="card-body">
+			    <h4 class="card-title">{{product.name}}</h4>
+			    <p class="card-text">{{product.price}}</p>
+			    <a href="#" class="btn btn-primary">Know More</a>
+			  </div>
+		    </div>
+		</div>
+	{% endfor %}
+	</div>
+
+
+
+
+
+ {% endblock content %}
+</body>
+</html>

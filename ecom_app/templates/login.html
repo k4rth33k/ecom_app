@@ -1,0 +1,44 @@
+{% extends 'home.html' %}
+
+ {% block content %}
+ <style type="text/css">
+ 	.login_form{
+ 		margin-top: 50px;
+ 		width: 200px;
+ 		height: auto;
+ 	}
+ </style>
+ 	<center>
+ 	<div class="login_form">
+ 		<h1>LOGIN</h1>
+ 		<span></span>
+    <form class="col s12" method="POST">
+    	{% csrf_token %}
+        <div class="input-field col s6">
+          <input id="username" type="text" class="validate" name="temp_uname">
+          <label for="username">Username</label>
+        </div>
+    	</br>
+    	<div class="input-field col s6">
+          <input id="password" type="text" class="validate" name="temp_pass">
+          <label for="password">Password</label>
+        </div>  
+        <button type="submit" class="waves-effect waves-light btn" style="margin-top: 10px">Login</button>
+    </form>
+	</div>
+
+	{% if not_reg == True %}
+  		<p style="color: red">User not registered.<a href="/shopoholic/register">Register</a></p>
+  	{% endif %}
+
+  	{% if bad_cred == True %}
+  		<p style="color: red">Incorrect Password.</p>
+  	{% endif %}
+
+ 	</center>
+
+ 	
+
+
+
+ {% endblock content %}
