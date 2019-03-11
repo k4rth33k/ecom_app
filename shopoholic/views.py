@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 import sqlite3
+import sys
+sys.path.insert(0, '../')
+from global_util import products_from_db,logged_in
 
 
 def login(request):
@@ -21,9 +24,28 @@ def login(request):
 			return render(request, 'login.html', {'bad_cred': True})
 		else:
 			print('OK')
-			return render(request, 'home.html', {'uname': user_name})
+			logged_in = True
+			prod_dict = products_from_db()
+			prod_dict['uname'] = user_name
+			prod_dict['sort'] = True
+			return render(request, 'home.html', prod_dict)
 
 	return render(request, 'login.html')
+
+def product(request):
+	pname = request.GET['pname']
+	connect = sqlite3.connect("db.sqlite3")
+	c = connect.cursor()
+	c.execute('SELECT * FROM Products WHERE Name = ?', (pname,))
+	prod_dets = c.fetchone()
+	# print(row)
+	c.execute('SELECT * FROM Reviews WHERE PName = ?', (pname.lower(),))
+	reviews = c.fetchall()
+	# print(reviews)
+	context = {'prod':prod_dets, 'reviews':reviews, 'signed_in': logged_in}
+
+	return render(request, 'product.html', context)
+
 
 
 

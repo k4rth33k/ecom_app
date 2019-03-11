@@ -20,12 +20,15 @@
         </div>
     	</br>
     	<div class="input-field col s6">
-          <input id="password" type="text" class="validate" name="temp_pass">
+          <input id="password" type="password" class="validate" name="temp_pass">
           <label for="password">Password</label>
         </div>  
         <button type="submit" class="waves-effect waves-light btn" style="margin-top: 10px">Login</button>
     </form>
 	</div>
+	<br>
+	<a style="color: green" href="/shopoholic/forgot" >Forgot Password?.</a>
+	<br><br>
 
 	{% if not_reg == True %}
   		<p style="color: red">User not registered.<a href="/shopoholic/register">Register</a></p>

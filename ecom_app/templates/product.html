@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+
+ {% block content %}
+<style type="text/css">
+	.prod_img{
+		margin: 30px;
+		margin-left: none;
+		border-style: solid;
+	}	
+
+	.prod_info{
+		margin: 30px;
+	}
+	.my_container{}
+	.reviews{
+		margin-left: 30px;
+		margin: 60px;
+	}
+
+</style>
+
+<!--  <div class="product_page">
+ <div class="grid-container">
+  <div class="grid-item">
+ 	<img src="{{prod.3}}" class="prod_img">
+  </div>
+  <div class="grid-item"></div>
+  <div class="grid-item">
+  	<h1>{{prod.0}}</h1>
+ 	<h2>₹{{prod.1}}</h2>
+ 	<h3>{{prod.2}}</h3>
+  </div>
+</div>
+</div> -->
+
+<div class="my_container">
+  <div class="row">
+    <div class="col-sm" style="margin-left: 20px">
+      <img src="{{prod.3}}" class="prod_img">
+    </div>
+    <div class="col-sm">
+      <h2>{{prod.0}}</h1>
+ 	  <h3>₹{{prod.1}}</h2>
+ 	  <h4>{{prod.2}}</h3>
+ 	  <button class="waves-effect waves-light btn">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+
+ <div class="reviews">
+ 	<h3>Reviews</h3>
+ {% for rev in reviews %}
+ 	<h5 style="font-style: bold">{{rev.0}}</h5>
+ 	<h6 style="font-style: italic;">Rating : {{rev.3}}</h6>
+ 	<h6>{{rev.2}}</h6>
+ {% endfor %}
+</div>
+
+{% if logged_in == True %}
+	<p>Logged in</p>
+{% endif %}
+
+
+
+  {% endblock content %}

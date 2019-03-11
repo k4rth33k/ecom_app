@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_views.home, name='main-home'),
     path('shopoholic/', include('shopoholic.urls'), name='login'),
+    path('signout/', main_views.home, name='logout'),
+
 ]
