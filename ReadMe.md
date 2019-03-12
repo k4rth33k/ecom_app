@@ -13,4 +13,6 @@ Database : sqlite
 
 Start Time : 12:36 PM (IST)
 
-End Time : -
+End Time : 12:00 PM (IST)
+
+First Prize for 24 hr Hackathon at IEEE Technoanza at MVSR College, Hyderabad.
