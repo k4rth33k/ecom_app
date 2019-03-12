@@ -16,6 +16,10 @@
 		margin-left: 30px;
 		margin: 60px;
 	}
+	.comment{
+		width: 400px;
+		padding-left: 60px;
+	}
 
 </style>
 
@@ -57,10 +61,21 @@
  {% endfor %}
 </div>
 
-{% if logged_in == True %}
-	<p>Logged in</p>
+{% if signed_in == True %}
+	<div class="comment">
+	<h5 style="color: #EE6E73" >Your opinion is important to us</h5>
+	<form method="POST">
+		{% csrf_token %}
+		<input type="text" name="rating" placeholder="1-5"><br>
+		<input type="text" name="review" placeholder="Describe your experience"><br>
+		<br>
+		<button type="submit" class="btn">Submit Review</button>
+		<br><br>
+	</form>
+	</div>
 {% endif %}
 
 
-
+<footer class="page-footer font-small blue pt-4">
+</footer>
   {% endblock content %}

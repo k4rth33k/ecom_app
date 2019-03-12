@@ -6,12 +6,16 @@
  		margin-top: 50px;
  		width: 200px;
  		height: auto;
- 		/*margin-left: none;*/
+    margin-left: 0px;  
  	}
+  #heading{
+    margin-left: -20px;
+  }
  </style>
  	<center>
  	<div class="login_form">
- 		<h1 style="color: #EE6E73">LOGIN</h1>
+    <center>
+ 		<h1 style="color:#EE6E73" id="heading">REGISTER</h1></center>
  		<span></span>
     <form class="col s12" method="POST">
     	{% csrf_token %}
@@ -19,24 +23,26 @@
           <input id="username" type="text" class="validate" name="temp_uname">
           <label for="username">Username</label>
         </div>
-    	</br>
     	<div class="input-field col s6">
           <input id="password" type="password" class="validate" name="temp_pass">
           <label for="password">Password</label>
         </div>  
-        <button type="submit" class="waves-effect waves-light btn" style="margin-top: 10px">Login</button>
+      <div class="input-field col s6">
+          <input id="password" type="password" class="validate" name="temp_pass_rep">
+          <label for="password">Repeat Password</label>
+        </div>
+        <button type="submit" class="waves-effect waves-light btn" style="margin-top: 10px">Register</button>
     </form>
 	</div>
-	<br>
-	<a style="color: green" href="/shopoholic/forgot" >Forgot Password?.</a>
 	<br><br>
 
-	{% if not_reg == True %}
-  		<p style="color: red">User not registered.<a href="/shopoholic/register">Register</a></p>
+
+	{% if alr_reg == True %}
+  		<p style="color: red">User already registered.<a href="/shopoholic/login">Login</a></p>
   	{% endif %}
 
-  	{% if bad_cred == True %}
-  		<p style="color: red">Incorrect Password.</p>
+  	{% if pass_match == False %}
+  		<p style="color: red">Passwords don't match</p>
   	{% endif %}
 
  	</center>

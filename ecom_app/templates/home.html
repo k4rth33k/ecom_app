@@ -32,6 +32,9 @@
 		.main_content{
 			margin-left: 15px;
 		}
+		.my_container{
+			margin: 20px;
+		}
 
 	</style>
 	<link rel="stylesheet" type="text/css" href="{% static 'attendance/materialize.css' %}">
@@ -92,10 +95,32 @@
 	</div>
 	<div class = "main_content">
 		<center>
-			<h3 style="margin: 8px">PERFECT PRODUCTS AT PRECISE RATES</h3>
+			<img src="https://i.imgur.com/Ov0cbyH.jpg" style="z-index: -1;transform: scale(0.7);">
+			<!-- <span>PERFECT PRODUCTS AT PRECISE PRICES<span> -->
+			<!-- <h3 style="margin: 8px">PERFECT PRODUCTS AT PRECISE PRICES</h3> -->
 		</center>
+		<br>
 	{% if uname %}
-	<i class="material-icons"><a href="#">sort</a></i>
+	<!-- <div class="my_container">
+  		<div class="row">
+    		<div class="col-sm">
+      			<h6>Sort</h6>
+    		</div>
+	    	<div class="col-sm">
+	      		<h6>New</h6>
+	    	</div>
+  		</div>
+	</div> -->
+	<div class="my_container">
+	<div class="row">
+		<h6 style="margin-left: 20px;">Sort By</h6>
+		<!-- <i class="material-icons">sort</i> -->
+		<h6 style="margin-left: 20px;"><a href="/shopoholic/sort?sort=old">Oldest</a></h6>
+		<h6 style="margin-left: 20px;"><a href = "/shopoholic/sort?sort=new">Newest</a></h6>
+		<h6 style="margin-left: 20px;"><a href = "/shopoholic/sort?sort=rev">Reviews</a></h6>
+		<h6 style="margin-left: 20px;"><a href = "/shopoholic/sort?sort=rat">Rating</a></h6>
+	</div></div>
+
 	{% endif %}
 	<div class="row">
 	{% for product in products %}
@@ -119,7 +144,8 @@
 
 
 
-
+<footer class="page-footer font-small blue pt-4">
+</footer>
  {% endblock content %}
 </body>
 </html>
