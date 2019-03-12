@@ -11,8 +11,8 @@ Review Analysis(Sentiment Analysis) : textblob, nltk
 Database : sqlite
 
 
-Start Time : 12:36 PM (IST)
+Start Time : 12:36 PM - 11th March 2019 (IST)
 
-End Time : 12:00 PM (IST)
+End Time : 12:00 PM - 12th March 2019 (IST)
 
 First Prize for 24 hr Hackathon at IEEE Technoanza at MVSR College, Hyderabad.
