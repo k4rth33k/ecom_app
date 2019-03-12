@@ -81,15 +81,36 @@ def review_sort_do():
 	prod_scores = sorted(prod_scores.items(), key=operator.itemgetter(1),reverse=True)
 	# print(prod_scores)
 	for key,value in prod_scores:
-		c.execute("INSERT INTO ReviewSort VALUES(?)", (key,))
+		c.execute("INSERT INTO ReviewSort VALUES(?,?)", (key,value,))
 		print(key,value)
 	connect.commit()
+
+def review_sort_do_2(pname, review):
+	connect = sqlite3.connect("db.sqlite3")
+	c = connect.cursor()
+	prod_names = []
+	c.execute('SELECT PName FROM ReviewSort')
+	temp_names = c.fetchall()
+	for x in temp_names:
+		prod_names.append(x[0])
+	if pname not in prod_names:
+		c.execute("INSERT INTO ReviewSort VALUES(?,?)", (pname,0,))
+	else:
+		c.execute("SELECT Score FROM ReviewSort WHERE PName = ?", (pname,))
+		score = c.fetchone()[0]
+		opinion = TextBlob(review, analyzer=NaiveBayesAnalyzer())
+		if opinion.sentiment.classification == 'pos':
+			score += 1
+		else:
+			score -= 1
+		c.execute("UPDATE ReviewSort SET Score = ? WHERE PName = ?",(score,pname,))
+		connect.commit()
 
 def review_sort_get():
 	sorted_prods = []
 	connect = sqlite3.connect("db.sqlite3")
 	c = connect.cursor()
-	c.execute('SELECT * FROM ReviewSort')
+	c.execute('SELECT PName FROM ReviewSort ORDER BY Score DESC')
 	sorted_names = c.fetchall()
 	for x in sorted_names:
 		c.execute('SELECT * FROM Products WHERE Name = ?',(x[0],))

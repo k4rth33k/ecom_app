@@ -58,14 +58,14 @@
 	<!-- Navbar -->
 	<nav>
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo" style="margin-left: 8px">SHOPOHOLIC</a>
+      <a href="{% url 'main-home' %}" class="brand-logo" style="margin-left: 8px">SHOPOHOLIC</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       	{% if uname %}
       		<li style="margin-right: 5px">Hi, {{uname}}</li>
       		<li><a href="/signout">Sign Out</a></li>
 
       	{% else %}
-        <li><a href="#">Register</a></li>
+        <li><a href="/shopoholic/register">Register</a></li>
         <li><a href="/shopoholic/login">Login</a></li>
       	{% endif %}
       </ul>

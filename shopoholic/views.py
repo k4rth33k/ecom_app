@@ -3,7 +3,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 import sqlite3
 import sys
 sys.path.insert(0, '../')
-from global_util import products_from_db,logged_in,rating_sort_get,review_sort_get
+from global_util import products_from_db,logged_in,rating_sort_get,review_sort_get,rating_sort_do,review_sort_do
+from textblob import TextBlob
+from textblob.sentiments import NaiveBayesAnalyzer
 
 
 def login(request):
@@ -44,9 +46,10 @@ def product(request):
 	if request.method == 'POST':
 		rating = request.POST.get('rating', 5)
 		review = request.POST['review']
-		c.execute("INSERT INTO Reviews VALUES(?,?,?,?)", (user_name,pname,review.lower(),rating,))
+		c.execute("INSERT INTO Reviews VALUES(?,?,?,?)", (user_name,pname.lower(),review,rating,))
 		connect.commit()
-
+		rating_sort_do()
+		
 	c.execute('SELECT * FROM Products WHERE Name = ?', (pname,))
 	prod_dets = c.fetchone()
 	# print(row)
@@ -97,7 +100,7 @@ def register(request):
 		else:
 			c.execute("INSERT INTO Users VALUES(?,?)", (uname,pass1,))
 			connect.commit()
-			return render(request, 'shopoholic/login/')
+			return render(request, 'login.html')
 	return render(request, 'register.html')
 
 
